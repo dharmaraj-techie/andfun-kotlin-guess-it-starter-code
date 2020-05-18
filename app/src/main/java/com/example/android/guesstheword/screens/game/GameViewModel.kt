@@ -20,12 +20,12 @@ class GameViewModel : ViewModel() {
 
     //game state
     private val _eventGameFinish = MutableLiveData<Boolean>()
-    val eventGameFinish : LiveData<Boolean>
+    val eventGameFinish: LiveData<Boolean>
         get() = _eventGameFinish
 
     //game state
     private val _currentTime = MutableLiveData<Long>()
-    val currentTime : LiveData<Long>
+    val currentTime: LiveData<Long>
         get() = _currentTime
 
     private val timer: CountDownTimer
@@ -34,8 +34,10 @@ class GameViewModel : ViewModel() {
         // These represent different important times
         // This is when the game is over
         const val DONE = 0L
+
         // This is the number of milliseconds in a second
         const val ONE_SECOND = 1000L
+
         // This is the total time of the game
         const val COUNTDOWN_TIME = 10000L
     }
@@ -126,9 +128,7 @@ class GameViewModel : ViewModel() {
         nextWord()
     }
 
-    fun onGameFinishComplete(){
+    fun onGameFinishComplete() {
         _eventGameFinish.value = false
     }
-
-
 }
