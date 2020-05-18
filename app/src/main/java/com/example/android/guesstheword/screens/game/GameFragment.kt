@@ -43,7 +43,10 @@ class GameFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         Log.i("GameFragment", "ViewModelProviders.of was called")
+
+        //get the viewModel
         viewModel = ViewModelProviders.of(this).get(GameViewModel::class.java)
+
         // Inflate view and obtain an instance of the binding class
         binding = DataBindingUtil.inflate(
                 inflater,
@@ -51,6 +54,10 @@ class GameFragment : Fragment() {
                 container,
                 false
         )
+
+        //let binding know about viewModel
+        binding.gameViewModel = viewModel
+
 
         viewModel.score.observe(this, Observer { newScore ->
             binding.scoreText.text = newScore.toString()
@@ -71,13 +78,6 @@ class GameFragment : Fragment() {
             binding.timerText.text = DateUtils.formatElapsedTime(current_time)
         })
 
-        binding.correctButton.setOnClickListener {
-            viewModel.onCorrect()
-        }
-
-        binding.skipButton.setOnClickListener {
-            viewModel.onSkip()
-        }
         return binding.root
      }
 
